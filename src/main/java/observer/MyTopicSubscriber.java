@@ -1,5 +1,4 @@
-import observer.Observer;
-import observer.Subject;
+package observer;
 
 public class MyTopicSubscriber implements Observer{
     private String name;// tên observer
@@ -9,23 +8,23 @@ public class MyTopicSubscriber implements Observer{
         this.name=nm;
     }
 
-    //gán sub cho observer
     @Override
-    public void setSubject(Subject subject) {
-        this.topic=sub;
-        
-    }
-    //lấy thông báo từ chủ đề bằng getUpdate() và in ra màn hình
-    @Override
-    public void update(Subject sub) {
-        String msg=  (String) topic.getUpdate(this);
-        if(msg == null){
+    public void update() {
+        String msg= (String) topic.getUpdate(this);
+        if(msg == null) {
             System.out.println(name+":: No new message");
-        }else{
+        } else {
             System.out.println(name+":: Consuming message::"+msg);
         }
-        
     }
+
+    @Override
+    public void setSubject(Subject subject) {
+        // TODO Auto-generated method stub
+        this.topic=subject;
+    }
+
+    
 
 
 }
